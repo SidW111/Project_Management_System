@@ -13,7 +13,7 @@ type Props = {
 };
 
 const Project = ({ params }: Props) => {
-  const {id} = params;
+  const { id } = params as { id: string };
   const [activeTab, setActiveTab] = useState("Board");
   const [isModalNewTaskOpen, setIsModalNewTaskOpen] = useState(false);
 
