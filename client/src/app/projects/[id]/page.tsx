@@ -9,7 +9,7 @@ import ModalNewTask from "@/components/ModalNewTask";
 import TimeLine from "../TimeLineView";
 
 type Props = {
-  params: { id: string }
+  params: { id: string } | Promise<{ id: string }>
 };
 
 const Project = ({ params }: Props) => {
@@ -44,4 +44,4 @@ const Project = ({ params }: Props) => {
   );
 };
 
-export default Project;
+export default Project as unknown as (props: { params: { id: string } }) => JSX.Element;
