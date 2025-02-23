@@ -2,9 +2,8 @@ import React from "react";
 import ReusablePriorityPage from "../reusablePriorityPage";
 import { Priority } from "@/state/api";
 
-type Props = {};
 
-const Low = (props: Props) => {
+const Low = () => {
   return <ReusablePriorityPage priority={Priority.Low} />;;
 };
 

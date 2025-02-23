@@ -1,9 +1,7 @@
 import Header from '@/components/Header'
 import React from 'react'
 
-type Props = {}
-
-const Settings = (props: Props) => {
+const Settings = () => {
     const userSettings = {
         username: "siddhant Waingade",
         email: "sidW@emai.com",

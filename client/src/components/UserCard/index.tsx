@@ -1,6 +1,6 @@
 import { User } from '@/state/api'
 import Image from 'next/image'
-import React, { use } from 'react'
+import React from 'react'
 
 type Props = {
     user: User

@@ -8,7 +8,6 @@ import {
 } from "@/state/api";
 import React from "react";
 import { useAppSelector } from "../redux";
-import { count, countReset } from "console";
 import { DataGrid, GridColDef } from "@mui/x-data-grid";
 import Header from "@/components/Header";
 import { Bar, BarChart, CartesianGrid, Cell, Legend, Pie, PieChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
