@@ -9,10 +9,18 @@ import ModalNewTask from "@/components/ModalNewTask";
 import TimeLine from "../TimeLineView";
 
 
-type tParams = Promise<{ slug: string[] }>;
 
-const Project = async (props: { params: tParams }) => {
-  const { slug } = await props.params;
+
+type Params = Promise<{id: "en" | "es" }>;
+
+const Project = async ({
+
+  params
+}: {
+
+  params: Params;
+})  => {
+  const { id } = await params
   const [activeTab, setActiveTab] = useState("Board");
   const [isModalNewTaskOpen, setIsModalNewTaskOpen] = useState(false);
 
