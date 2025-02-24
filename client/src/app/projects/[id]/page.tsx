@@ -1,9 +1,6 @@
-import dynamic from "next/dynamic";
-
-// Dynamically import the client component, disabling SSR for it.
-const ProjectClient = dynamic(() => import("./ProjectClient"), { ssr: false });
+// src/app/projects/[id]/page.tsx
+import ProjectClient from "./ProjectClient";
 
 export default function Page({ params }: { params: { id: string } }) {
-  // The server component receives params as a plain object.
   return <ProjectClient id={params.id} />;
 }
