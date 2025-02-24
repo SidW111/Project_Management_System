@@ -1,44 +1,9 @@
-"use client";
+import dynamic from "next/dynamic";
 
-import React, { useState } from "react";
-import ProjectHeader from "@/app/projects/ProjectHeader";
-import Board from "../BoardView";
-import List from "../ListView";
-import Timeline from "../TimeLineView";
-import Table from "../TableView";
-import ModalNewTask from "@/components/ModalNewTask";
+// Dynamically import the client component, disabling SSR for it.
+const ProjectClient = dynamic(() => import("./ProjectClient"), { ssr: false });
 
-type Props = {
-  params: { id: string };
-};
-
-const Project = ({ params }: Props) => {
-  const { id } = params;
-  const [activeTab, setActiveTab] = useState("Board");
-  const [isModalNewTaskOpen, setIsModalNewTaskOpen] = useState(false);
-
-  return (
-    <div>
-      <ModalNewTask
-        isOpen={isModalNewTaskOpen}
-        onClose={() => setIsModalNewTaskOpen(false)}
-        id={id}
-      />
-      <ProjectHeader activeTab={activeTab} setActiveTab={setActiveTab} />
-      {activeTab === "Board" && (
-        <Board id={id} setIsModalNewTaskOpen={setIsModalNewTaskOpen} />
-      )}
-      {activeTab === "List" && (
-        <List id={id} setIsModalNewTaskOpen={setIsModalNewTaskOpen} />
-      )}
-      {activeTab === "Timeline" && (
-        <Timeline id={id} setIsModalNewTaskOpen={setIsModalNewTaskOpen} />
-      )}
-      {activeTab === "Table" && (
-        <Table id={id} setIsModalNewTaskOpen={setIsModalNewTaskOpen} />
-      )}
-    </div>
-  );
-};
-
-export default Project;
+export default function Page({ params }: { params: { id: string } }) {
+  // The server component receives params as a plain object.
+  return <ProjectClient id={params.id} />;
+}
