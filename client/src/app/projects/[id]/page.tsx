@@ -1,9 +1,48 @@
-// app/projects/[id]/page.tsx (Server Component)
-import dynamic from "next/dynamic";
+"use client";
 
-// Dynamically import the client component so it’s rendered on the client side.
-const ProjectClient = dynamic(() => import("./ProjectClient"), { ssr: false });
+import React, { useState } from "react";
+import ProjectHeader from "@/app/projects/ProjectHeader";
+import Board from "../BoardView";
+import List from "../ListView";
+import Table from "../TableView";
+import ModalNewTask from "@/components/ModalNewTask";
+import TimeLine from "../TimeLineView";
 
-export default function Page({ params }: { params: { id: string } }) {
-  return <ProjectClient id={params.id} />;
-}
+
+type Props = {
+  id: string;
+};
+
+const Project = ({ id }: Props) => {
+
+  const [activeTab, setActiveTab] = useState("Board");
+  const [isModalNewTaskOpen, setIsModalNewTaskOpen] = useState(false);
+
+  return (
+    <div>
+      <ModalNewTask
+        isOpen={isModalNewTaskOpen}
+        onClose={() => setIsModalNewTaskOpen(false)}
+        id={id}
+      />
+      <ProjectHeader activeTab={activeTab} setActiveTab={setActiveTab} />
+      {activeTab === "Board" && (
+        <Board id={id} setIsModalNewTaskOpen={setIsModalNewTaskOpen} />
+      )}
+
+      {activeTab === "List" && (
+        <List id={id} setIsModalNewTaskOpen={setIsModalNewTaskOpen} />
+      )}
+
+      {activeTab === "TimeLine" && (
+        <TimeLine id={id} setIsModalNewTaskOpen={setIsModalNewTaskOpen} />
+      )}
+      
+      {activeTab === "Table" && (
+        <Table id={id} setIsModalNewTaskOpen={setIsModalNewTaskOpen} />
+      )}
+    </div>
+  );
+};
+
+export default Project as unknown as (props: { params: { id: string } }) => JSX.Element;
