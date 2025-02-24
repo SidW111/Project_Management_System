@@ -1,44 +1,12 @@
-"use client";
+// src/app/projects/[id]/page.tsx
 
-import React, { useState } from "react";
-import ProjectHeader from "@/app/projects/ProjectHeader";
-import Board from "../BoardView";
-import List from "../ListView";
-import Timeline from "../TimeLineView";
-import Table from "../TableView";
-import ModalNewTask from "@/components/ModalNewTask";
+import ProjectClient from "./ProjectClient";
 
-type Props = {
+type PageProps = {
   params: { id: string };
 };
 
-const Project = ({ params }: Props) => {
+export default function Page({ params }: PageProps) {
   const { id } = params;
-  const [activeTab, setActiveTab] = useState("Board");
-  const [isModalNewTaskOpen, setIsModalNewTaskOpen] = useState(false);
-
-  return (
-    <div>
-      <ModalNewTask
-        isOpen={isModalNewTaskOpen}
-        onClose={() => setIsModalNewTaskOpen(false)}
-        id={id}
-      />
-      <ProjectHeader activeTab={activeTab} setActiveTab={setActiveTab} />
-      {activeTab === "Board" && (
-        <Board id={id} setIsModalNewTaskOpen={setIsModalNewTaskOpen} />
-      )}
-      {activeTab === "List" && (
-        <List id={id} setIsModalNewTaskOpen={setIsModalNewTaskOpen} />
-      )}
-      {activeTab === "Timeline" && (
-        <Timeline id={id} setIsModalNewTaskOpen={setIsModalNewTaskOpen} />
-      )}
-      {activeTab === "Table" && (
-        <Table id={id} setIsModalNewTaskOpen={setIsModalNewTaskOpen} />
-      )}
-    </div>
-  );
-};
-
-export default Project;
+  return <ProjectClient id={id} />;
+}
