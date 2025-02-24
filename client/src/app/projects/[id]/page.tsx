@@ -4,15 +4,15 @@ import React, { useState } from "react";
 import ProjectHeader from "@/app/projects/ProjectHeader";
 import Board from "../BoardView";
 import List from "../ListView";
+import Timeline from "../TimeLineView";
 import Table from "../TableView";
 import ModalNewTask from "@/components/ModalNewTask";
-import TimeLine from "../TimeLineView";
 
 type Props = {
   params: { id: string };
 };
 
-export default function Project({ params }: Props) {
+const Project = ({ params }: Props) => {
   const { id } = params;
   const [activeTab, setActiveTab] = useState("Board");
   const [isModalNewTaskOpen, setIsModalNewTaskOpen] = useState(false);
@@ -31,12 +31,14 @@ export default function Project({ params }: Props) {
       {activeTab === "List" && (
         <List id={id} setIsModalNewTaskOpen={setIsModalNewTaskOpen} />
       )}
-      {activeTab === "TimeLine" && (
-        <TimeLine id={id} setIsModalNewTaskOpen={setIsModalNewTaskOpen} />
+      {activeTab === "Timeline" && (
+        <Timeline id={id} setIsModalNewTaskOpen={setIsModalNewTaskOpen} />
       )}
       {activeTab === "Table" && (
         <Table id={id} setIsModalNewTaskOpen={setIsModalNewTaskOpen} />
       )}
     </div>
   );
-}
+};
+
+export default Project;
