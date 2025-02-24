@@ -8,11 +8,12 @@ import Table from "../TableView";
 import ModalNewTask from "@/components/ModalNewTask";
 import TimeLine from "../TimeLineView";
 
+type Props = {
+  params: { id: string };
+};
 
-type Params = Promise<{ id: string }>;
-
-const Project = async ({ params }: { params: Params }) => {
-  const { id } = await params;
+export default function Project({ params }: Props) {
+  const { id } = params;
   const [activeTab, setActiveTab] = useState("Board");
   const [isModalNewTaskOpen, setIsModalNewTaskOpen] = useState(false);
 
@@ -27,20 +28,15 @@ const Project = async ({ params }: { params: Params }) => {
       {activeTab === "Board" && (
         <Board id={id} setIsModalNewTaskOpen={setIsModalNewTaskOpen} />
       )}
-
       {activeTab === "List" && (
         <List id={id} setIsModalNewTaskOpen={setIsModalNewTaskOpen} />
       )}
-
       {activeTab === "TimeLine" && (
         <TimeLine id={id} setIsModalNewTaskOpen={setIsModalNewTaskOpen} />
       )}
-      
       {activeTab === "Table" && (
         <Table id={id} setIsModalNewTaskOpen={setIsModalNewTaskOpen} />
       )}
     </div>
   );
-};
-
-export default Project as unknown as (props: { params: { id: string } }) => JSX.Element;
+}
