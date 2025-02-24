@@ -8,6 +8,7 @@ import Table from "../TableView";
 import ModalNewTask from "@/components/ModalNewTask";
 import TimeLine from "../TimeLineView";
 
+export type paramsType = Promise<{ id: string }>;
 
 const Project = async (props: {
   params: Promise<{ id: string }>;
