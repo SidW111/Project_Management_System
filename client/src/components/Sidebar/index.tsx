@@ -59,7 +59,7 @@ const Sidebar = () => {
         {/* TOP LOGO */}
         <div className="z-50 flex min-h-[56px] w-64 items-center justify-between bg-white px-6 pt-3 dark:bg-black">
           <div className="text-xl font-bold text-gray-800 dark:text-white">
-            EDLIST
+            LIST
           </div>
           {isSidebarCollapsed ? null : (
             <button
@@ -82,7 +82,7 @@ const Sidebar = () => {
           />
           <div>
             <h3 className="text-md font-bold tracking-wide dark:text-gray-200">
-              EDROH TEAM
+              TEAM SID
             </h3>
             <div className="mt-1 flex items-start gap-2">
               <LockIcon className="mt-[0.1rem] h-3 w-3 text-gray-500 dark:text-gray-400" />
